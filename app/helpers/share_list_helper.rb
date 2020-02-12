@@ -1,0 +1,2 @@
+module ShareListHelper
+end
