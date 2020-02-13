@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:edit, :update, :show, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy]
   before_action :require_login
   skip_before_action :require_login, only: [:new, :create]
 
@@ -12,6 +12,9 @@ class UsersController < ApplicationController
 
     if @user.valid?
       @user.save
+
+      session[:user_id] = @user[:id]
+
       redirect_to user_path(@user)
     else
       render :new
@@ -22,13 +25,19 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @user.destroy
+    redirect_to root_path
   end
 
   def show
-    
   end
 
   private
@@ -38,9 +47,5 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
   end
 end
