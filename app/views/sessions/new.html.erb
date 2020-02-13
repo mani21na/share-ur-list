@@ -1,11 +1,11 @@
-<%= form_tag ({controller: 'sessions', action: 'create', method: 'post'}) do %>
+<%= form_tag login_path do %>
   <label>Username: </label>
   <input name = username><br>
 
   <label>Password: </label>
   <input name = password><br>
 
-  <input type = submit value = 'login'>
+  <input type = submit value = 'Log in'>
 <% end %>
 
-<%= link_to "New Account", new_user_path %>
+<%= button_to "New Account", new_user_path %>
