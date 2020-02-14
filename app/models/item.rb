@@ -8,6 +8,6 @@ class Item < ApplicationRecord
     end
 
     def done_checked?
-        !!(done == "1")
+        done
     end
 end
