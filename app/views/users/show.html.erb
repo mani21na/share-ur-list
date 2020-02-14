@@ -1,3 +1,5 @@
 <h1>User#show</h1>
 
-<%= button_to "Add new list", new_list_path %>
+<%= link_to "Add new list", new_list_path %><br><br><br>
+
+<%= render partial: "lists/list", locals: { user_lists: @user.lists } %>
