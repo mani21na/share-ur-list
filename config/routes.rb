@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'application#hello'
   resources :users, only: [:new, :create, :edit, :upgrade, :show, :destroy]
     
-  resources :lists, only: [:new, :create, :edit, :upgrade, :index, :show, :destroy] do
+  resources :lists, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
     resources :share_users, only: [:create, :destroy, :index]
   end
 
