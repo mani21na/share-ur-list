@@ -12,16 +12,28 @@
       </div>
     <% end %>
 
+    <br>
+    <br>
+
     <%= f.label :subject %>
-    <%= f.text_field :subject %><br>
+    <%= f.text_field :subject %>
     
+    <br>
+    <br>
+
     <%= f.fields_for :items do |item| %>
         
         <%= item.label :item %>
         <%= item.text_field :item %>
     
         <%= item.label :quantity %>
-        <%= item.text_field :quantity %><br>
+        <%= item.text_field :quantity %>
+        
+        <%= item.label :done %>
+        <%= item.check_box :done %>
+
+        <br>
+        <br>
  
     <% end %>
  
