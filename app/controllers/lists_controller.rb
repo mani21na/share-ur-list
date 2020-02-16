@@ -22,9 +22,6 @@ class ListsController < ApplicationController
     end
   end
 
-  #def edit
-  #end
-
   def update
     if @list.update(list_params)
       redirect_to user_path(current_user.id)
@@ -34,7 +31,6 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    #binding.pry
     @list.items.destroy
     @list.destroy
     redirect_to user_path(current_user.id)
@@ -42,10 +38,6 @@ class ListsController < ApplicationController
 
   def show
   end
-
-  #def index
-  #  @lists = List.all.find_all{ |list| list.user_id == current_user.id }
-  #end
 
   private 
 
@@ -58,6 +50,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:user_id, :subject, items_attributes: [:id, :item_no, :item, :quantity, :done])
+    params.require(:list).permit(:user_id, :subject, items_attributes: [:item_no, :item, :quantity, :done, :id, '_destroy'])
   end 
 end
