@@ -1,0 +1,5 @@
+<%= form_tag(users_path, method: :get) do %>
+    <%= label_tag(:search, "Search for username you want to share this list with.") %><br>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag("Search") %>
+<% end %>
