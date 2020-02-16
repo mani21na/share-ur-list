@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'application#hello'
-  resources :users, only: [:new, :create, :edit, :upgrade, :show, :destroy]
+  resources :users, only: [:new, :create, :edit, :update, :show, :destroy, :index]
     
-  resources :lists, only: [:new, :create, :edit, :update, :index, :show, :destroy] do
+  resources :lists, only: [:new, :create, :update, :show, :destroy] do
     resources :share_users, only: [:create, :destroy, :index]
   end
 
