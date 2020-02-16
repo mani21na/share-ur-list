@@ -40,10 +40,14 @@ class UsersController < ApplicationController
   def show
   end
 
+  def index
+    @users = User.search_users_by_username(params[:search])
+  end
+
   private
   
   def user_params
-    params.require(:user).permit(:username, :password, :first_name, :last_name)
+    params.require(:user).permit(:username, :password, :password_confirmation, :first_name, :last_name, :search)
   end
 
   def set_user
