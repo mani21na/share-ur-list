@@ -1,11 +1,10 @@
 <% user_lists.each do |list| %>
 
-<label>Subject: </label>
-<%= list.subject %><br>
+    <label>Subject: </label>
+    <%= link_to list.subject, list_path(list.id) %><br>
 
-<label>Share Users: </label>
-<%= list.share_users.map{ |user| user.username } if !list.share_users.map{ |user| user.username }.empty? %><br>
-
-<%=  link_to "Show #{ list.subject }", list_path(list.id) %><br><br><br>
-
+    <% if !list.share_users.map{ |user| user.username }.empty? %>
+        <label>Share users: </label>
+        <%= list.share_users.map{ |user| user.username } %><br>
+    <% end %>
 <%end%>
