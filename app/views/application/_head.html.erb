@@ -1,0 +1,14 @@
+<% if session[:user_id].nil? %>
+  <p>
+    <%= link_to "Log in", login_path %>
+  </p>
+<% else %>
+
+  <h1>Hi, <%= current_user.first_name + " " +current_user.last_name %>.</h1>
+  <%= button_to "Edit", edit_user_path(current_user.id), method: :get %>
+
+  <%= form_tag logout_path do %>
+    <input type=submit value='Log out'>
+  <% end %>
+
+<%end %>
