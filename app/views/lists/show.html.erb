@@ -1,5 +1,8 @@
 <h1>List#show</h1>
 
+<%= render partial: "users/search" %>
+
+
 <%= render "form"%>
 <%= button_to "Cancle", user_path(current_user.id), method: :get %>
 <%= button_to "Delete", list_path(@list.id), method: :delete %>
