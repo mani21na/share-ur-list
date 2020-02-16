@@ -1,2 +1,4 @@
 <h1>List#edit</h1>
-<p>Find me in app/views/list/edit.html.erb</p>
+<%= render "form"%>
+<%= button_to "Cancle", user_path(current_user.id), method: :get %>
+<%= button_to "Delete", list_path(@list.id), method: :delete %>
