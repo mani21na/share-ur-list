@@ -2,6 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:edit, :update, :destroy, :show]
   before_action :set_user_id
   before_action :require_login
+  before_action :require_login
 
   def new
     @list = List.new
