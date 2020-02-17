@@ -1,2 +1,9 @@
-<h1>ShareList#new</h1>
-<p>Find me in app/views/share_list/new.html.erb</p>
+<h1>Search user to share "<%= @list.subject %>" list.</h1>
+<%= @user.username %>
+
+<%= form_for :share_user, url: { action: "create" }, method: :post do |f| %>
+    <%= f.hidden_field :list_id, {value: @list.id} %>
+    <%= f.hidden_field :user_id, {value: @user.id} %>
+    <%= f.hidden_field :username, {value: @user.username} %>
+    <%= f.submit "Add user to share" %>
+<% end %>
