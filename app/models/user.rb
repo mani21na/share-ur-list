@@ -8,6 +8,6 @@ class User < ApplicationRecord
     validates :username, format: { with: URI::MailTo::EMAIL_REGEXP } 
 
     def self.search_users_by_username(search)
-        @users = User.select("username, id").where("username like ?", "%#{search}%")
+        @users = User.select("username, id").where("username like ?", "#{search.downcase}")
     end
 end
