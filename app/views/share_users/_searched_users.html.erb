@@ -1,0 +1,10 @@
+<% @share_users.each do |share_user| %>
+    <%= form_for(share_user) do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+        <%= f.submit %>
+    <% end %>
+<% end %>
+
+
+
