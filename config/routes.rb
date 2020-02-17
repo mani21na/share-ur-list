@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy, :index]
     
   resources :lists, only: [:new, :create, :update, :show, :destroy] do
-    resources :share_users, only: [:create, :destroy, :index]
+    resources :share_users, only: [:new, :destroy, :index, :create]
+    get '/user_search', to: 'share_users#search'
   end
 
   #resources :lists

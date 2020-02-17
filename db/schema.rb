@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_02_16_050157) do
   create_table "share_users", force: :cascade do |t|
     t.integer "list_id"
     t.integer "user_id"
+    t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
