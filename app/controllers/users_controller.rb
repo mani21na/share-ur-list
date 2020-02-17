@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy, :show]
   before_action :require_login
-  skip_before_action :require_login, only: [:new, :create]
+  #skip_before_action :require_login, only: [:new, :create]
 
   def new
     @user = User.new
@@ -40,7 +40,11 @@ class UsersController < ApplicationController
   def show
   end
 
-  def index
+  #def index
+  #  @users = User.search_users_by_username(params[:search])
+  #end
+
+  def search 
     @users = User.search_users_by_username(params[:search])
   end
 
