@@ -1,8 +1,8 @@
 <h1>List#show</h1>
 
-<%= render partial: "users/search" %>
-
+<%= link_to "Add user to share", list_user_search_path(@list), method: :get %>
 
 <%= render "form"%>
+
 <%= button_to "Cancle", user_path(current_user.id), method: :get %>
 <%= button_to "Delete", list_path(@list.id), method: :delete %>
