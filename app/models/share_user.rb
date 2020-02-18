@@ -1,5 +1,5 @@
 class ShareUser < ApplicationRecord
     belongs_to :list
 
-    validates :user_id, uniqueness: true
+    validates_uniqueness_of :user_id, scope: :list_id
 end
