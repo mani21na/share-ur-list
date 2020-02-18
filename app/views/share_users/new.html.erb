@@ -1,4 +1,4 @@
-<h1>Search user to share "<%= @list.subject %>" list.</h1>
+<h1>Searched user to share "<%= @list.subject %>" list.</h1>
 <%= @user.username %>
 
 <%= form_for :share_user, url: { action: "create" }, method: :post do |f| %>
@@ -7,3 +7,5 @@
     <%= f.hidden_field :username, {value: @user.username} %>
     <%= f.submit "Add user to share" %>
 <% end %>
+
+<%= button_to "Back to search page", list_user_search_path(@list.id), method: :get %>
