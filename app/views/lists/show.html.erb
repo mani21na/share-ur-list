@@ -1,6 +1,10 @@
-<h1>List#show</h1>
+<h1>List information</h1>
 
 <%= link_to "Add user to share", list_user_search_path(@list), method: :get %>
+<br>
+<br>
+
+<%= render partial: "share_users/shared_users"%>
 
 <%= render "form"%>
 
