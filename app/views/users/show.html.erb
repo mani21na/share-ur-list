@@ -1,7 +1,11 @@
 <h1>User's List</h1>
-
 <%= button_to "Add new list", new_list_path, method: :get %><br><br><br>
 
-<%= render partial: "lists/list", locals: { user_lists: @user.lists } %>
+<% if !@user.lists.empty? %>
+    <%= render partial: "lists/list", locals: { user_lists: @user.lists } %>
+<% end %>
 
-<%= render partial: "lists/list", locals: { user_lists: @lists_shared } %>
+<% if !@lists_shared.empty? %>
+    <h1>Lists shared by others</h1>
+    <%= render partial: "lists/list", locals: { user_lists: @lists_shared } %>
+<% end %>

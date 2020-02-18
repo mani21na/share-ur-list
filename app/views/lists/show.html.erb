@@ -1,12 +1,17 @@
 <h1>List information</h1>
 
-<%= link_to "Add user to share", list_user_search_path(@list), method: :get %>
-<br>
-<br>
-
-<%= render partial: "share_users/shared_users"%>
+<% if !@share_users.map{ |user| user.user_id }.include?(session[:user_id])%>
+    <%= link_to "Add user to share", list_user_search_path(@list), method: :get %>
+    <br>
+    <br>
+    <%= render partial: "share_users/shared_users"%>
+<% end %>
 
 <%= render "form"%>
 
+
 <%= button_to "Cancle", user_path(current_user.id), method: :get %>
-<%= button_to "Delete", list_path(@list.id), method: :delete %>
+
+<% if !@share_users.map{ |user| user.user_id }.include?(session[:user_id])%>
+    <%= button_to "Delete", list_path(@list.id), method: :delete %>
+<% end %>
