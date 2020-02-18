@@ -24,10 +24,18 @@ class ListsController < ApplicationController
   end
 
   def update
-    if @list.update(list_params)
-      redirect_to user_path(current_user.id)
-    else 
-       render :edit
+    if @list.user_id == session[:user_id]
+      if @list.update(list_params)
+        redirect_to user_path(current_user.id)
+      else 
+         render :edit
+      end
+    else
+      if @list.update(params.require(:list).permit(:subject, items_attributes: [:item_no, :item, :quantity, :done, :id, '_destroy']))
+        redirect_to user_path(current_user.id)
+      else
+        render :edit
+      end
     end
   end
 
