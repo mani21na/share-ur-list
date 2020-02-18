@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:edit, :update, :destroy, :show]
   before_action :set_user_id
   before_action :require_login
-  before_action :require_login
+  
 
   def new
     @list = List.new
@@ -32,12 +32,14 @@ class ListsController < ApplicationController
   end
 
   def destroy
+    @list.share_users.destroy
     @list.items.destroy
     @list.destroy
     redirect_to user_path(current_user.id)
   end
 
   def show
+    list_share_users
   end
 
   private 
@@ -47,10 +49,14 @@ class ListsController < ApplicationController
   end
   
   def set_user_id
-    @user_id = current_user.id
+    @user_id ||= current_user.id
   end
 
   def list_params
     params.require(:list).permit(:user_id, :subject, items_attributes: [:item_no, :item, :quantity, :done, :id, '_destroy'])
   end 
+
+  def list_share_users
+    @share_users ||= @list.share_users
+  end
 end
