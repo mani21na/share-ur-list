@@ -38,8 +38,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    binding.pry
-    @lists_shared = Share_users.find_by(user_id: session[:user_id])
+    @lists_shared = List.joins(:share_users).where(share_users: { user_id: session[:user_id] })
   end
 
   def search 
@@ -49,6 +48,14 @@ class UsersController < ApplicationController
   #Shared lists by others
   def index
     @lists_shared = ShareUser.find_by(user_id: session[:user_id])
+  end
+
+  def self.from_omniauth(auth)
+    # Creates a new user only if it doesn't exist
+    where(email: auth.info.email).first_or_initialize do |user|
+      user.name = auth.info.name
+      user.email = auth.info.email
+    end
   end
 
   private
