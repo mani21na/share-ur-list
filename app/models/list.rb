@@ -1,7 +1,7 @@
 class List < ApplicationRecord
     belongs_to :user
     has_many :items, :dependent => :delete_all
-    has_many :share_users
+    has_many :share_users, :dependent => :delete_all
 
 
     accepts_nested_attributes_for :items, :allow_destroy => true
