@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
     helper_method :current_user, :logged_in?, :require_login, :list_creater
     add_flash_types :info, :error, :warning
 
-
     def logged_in?
         !!current_user
     end

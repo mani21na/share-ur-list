@@ -7,14 +7,9 @@ Rails.application.routes.draw do
     get '/user_search', to: 'share_users#search'
   end
 
-  #resources :lists
-  #resources :share_users
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
-
-  # Routes for Google authentication
-  get ‘auth/:provider/callback’, to: ‘sessions#googleAuth’
-  get ‘auth/failure’, to: redirect(‘/’)
 end

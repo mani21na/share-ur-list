@@ -23,8 +23,15 @@ gem 'jbuilder', '~> 2.7'
  gem 'bcrypt', '~> 3.1.7'
 
 # Use google omniauth
-gem 'devise'
+gem 'omniauth'
+gem 'dotenv-rails'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
+gem 'dotenv'
+
+# Use facebook omniauth
+#gem 'omniauth'
+#gem 'omniauth-facebook'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
