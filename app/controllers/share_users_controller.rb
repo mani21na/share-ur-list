@@ -5,7 +5,8 @@ class ShareUsersController < ApplicationController
 
   def new 
     if params[:search].blank?  
-      redirect_to(root_path, alert: "Empty field!") and return  
+      redirect_to(list_user_search_path(params[:list_id]), alert: "Empty field!") and return 
+      #redirect_to(root_path, alert: "Empty field!") and return  
     end   
       @share_user = @list.share_users.build  
       @user = User.search_users_by_username(params[:search]).first
@@ -21,7 +22,8 @@ class ShareUsersController < ApplicationController
     if @share_user.save
       redirect_to list_path(@list.id)
     else
-      redirect_to new_list_share_user_path(params[:list_id])
+      #flash.now[:error] = "#{params[:username]} does not exist or is already added."
+      redirect_to list_user_search_path(params[:list_id], alert: "The user does not exist or is already added.")
     end
   end
 
