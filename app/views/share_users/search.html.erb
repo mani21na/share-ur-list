@@ -1,5 +1,9 @@
 <h1>Search user by username to share "<%= @list.subject %>" list.</h1>
 
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
 <%= form_tag(new_list_share_user_path, method: :get) do %>
     <%= label_tag(:search, "Search for username you want to share this list with.") %><br>
     <%= text_field_tag :search, params[:search] %>
