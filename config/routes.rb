@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update, :show, :destroy, :index]
     
   resources :lists, only: [:new, :create, :update, :show, :destroy] do
-    resources :share_users, only: [:new, :destroy, :index, :create]
+    resources :share_users, only: [:new, :destroy, :index, :create, :index]
     get '/user_search', to: 'share_users#search'
   end
 
@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'
+
+  # Routes for Google authentication
+  get ‘auth/:provider/callback’, to: ‘sessions#googleAuth’
+  get ‘auth/failure’, to: redirect(‘/’)
 end
