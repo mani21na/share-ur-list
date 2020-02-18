@@ -5,7 +5,7 @@
     <label>Subject: </label><br>
     <%= link_to list.subject, list_path(list.id) %><br>
     
-    <% if !list.share_users.empty? && !list.share_users.map{ |user| user.user_id }.include?(params[:user_id]) %>
+    <% if !list.share_users.empty? && !list.share_users.map{ |user| user.user_id }.include?(session[:user_id]) %>
 
         <label>Share users: </label><br>
 
@@ -14,7 +14,7 @@
             <li><%= user.username  %></li>
         <% end %>
         </ul>
-    <% elsif list.share_users.map{ |user| user.user_id == session[:user_id]} %>
+    <% elsif list.share_users.map{ |user| user.user_id }.include?(session[:user_id]) %>
         <label>List creator: </label><br>
         <%= list_creater(list.id)%>
     <% end %>
