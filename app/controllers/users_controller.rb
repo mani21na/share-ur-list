@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy, :show]
   before_action :require_login
-  #skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create]
 
   def new
     @user = User.new
@@ -38,14 +38,17 @@ class UsersController < ApplicationController
   end
 
   def show
+    binding.pry
+    @lists_shared = Share_users.find_by(user_id: session[:user_id])
   end
-
-  #def index
-  #  @users = User.search_users_by_username(params[:search])
-  #end
 
   def search 
     @users = User.search_users_by_username(params[:search])
+  end
+
+  #Shared lists by others
+  def index
+    @lists_shared = ShareUser.find_by(user_id: session[:user_id])
   end
 
   private
@@ -55,6 +58,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user ||= User.find(params[:id])
   end
 end
