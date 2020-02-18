@@ -1,6 +1,6 @@
 class ShareUsersController < ApplicationController
   before_action :set_share_users, only: [:edit, :update, :destroy, :show]
-  before_action :current_list, only: [:new, :search, :create, :index]
+  before_action :current_list, only: [:new, :search, :create, :index, :destroy]
   before_action :require_login
 
   def new 
@@ -25,23 +25,14 @@ class ShareUsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
+    @share_user.destroy
+    redirect_to list_path(@list.id)
   end
 
   def show
   end
-
-  def index
-    binding.pry
-    @share_users = @list.share_users
-  end
-
+    
   private
 
   def share_users_params
@@ -49,10 +40,10 @@ class ShareUsersController < ApplicationController
   end
 
   def set_share_users
-    @share_user = ShareUser.find(params[:id])
+    @share_user ||= ShareUser.find(params[:id])
   end
 
   def current_list
-    @list = List.find(params[:list_id].to_i)
+    @list ||= List.find(params[:list_id].to_i)
   end
 end
