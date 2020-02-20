@@ -1,4 +1,17 @@
 <%= form_tag login_path do %>
+    <% if @user != nil%>
+      <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2>There were some errors:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <%end%>
+
   <label>Username: </label>
   <input name = username><br>
 
@@ -8,5 +21,5 @@
   <input type = submit value = 'Log in'>
 <% end %>
 
-<%= link_to "New Account", new_user_path, method: :get %>
+<%= link_to "New Account", new_user_path, method: :get %><br>
 <%= link_to("Log In With Google", '/auth/google_oauth2') %>
