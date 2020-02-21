@@ -1,22 +1,22 @@
-<%@no = 0%>
-<% user_lists.each do |list| %>
-    <%@no += 1%>
-    <label><%=@no %>.</label><br> 
+
+<% user_lists.each.with_index(1) do |list, no| %>
+    <label><%= no %></label><br> 
     <label>Subject: </label><br>
     <%= link_to list.subject, list_path(list.id) %><br>
     
-    <% if !list.share_users.empty? && !list.share_users.map{ |user| user.user_id }.include?(session[:user_id]) %>
-
+    <% if !list.share_users.empty? && !list.users.find_by(:id => session[:user_id]) %>
+                                               
         <label>Share users: </label><br>
 
         <ul>
-        <% list.share_users.each do |user| %>
-            <li><%= user.username  %></li>
+        <% list.share_users.each do |s_user| %>
+            <li><%= s_user.user.username  %> / note:<%= s_user.note %></li>
+
         <% end %>
         </ul>
-    <% elsif list.share_users.map{ |user| user.user_id }.include?(session[:user_id]) %>
+    <% elsif list.users.find_by(:id => session[:user_id]) %>
         <label>List creator: </label><br>
-        <%= list_creater(list.id)%>
+        <%= list.user.username %>
     <% end %>
     <br>
     <br>

@@ -6,8 +6,4 @@ class Item < ApplicationRecord
     def item_is_exist?
         !(item == "") 
     end
-
-    def done_checked?
-        done
-    end
 end

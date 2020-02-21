@@ -41,7 +41,7 @@ class ShareUsersController < ApplicationController
   private
 
   def share_users_params
-    params.require(:share_user).permit(:user_id, :list_id, :username, :search)
+    params.require(:share_user).permit(:user_id, :list_id, :username, :note)
   end
 
   def set_share_users

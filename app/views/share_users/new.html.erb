@@ -5,6 +5,8 @@
     <%= f.hidden_field :list_id, {value: @list.id} %>
     <%= f.hidden_field :user_id, {value: @user.id} %>
     <%= f.hidden_field :username, {value: @user.username} %>
+    <%= f.label :note %>
+    <%= f.text_field :note %>
     <%= f.submit "Add user to share" %>
 <% end %>
 

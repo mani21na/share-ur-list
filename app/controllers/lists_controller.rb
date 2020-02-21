@@ -61,7 +61,16 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:user_id, :subject, items_attributes: [:item_no, :item, :quantity, :done, :id, '_destroy'])
+    params.require(:list).permit(:user_id, 
+      :subject, 
+      items_attributes: 
+        [:item_no, 
+          :item, 
+          :quantity, 
+          :done, 
+          :id, 
+          '_destroy']
+        )
   end 
 
   def list_share_users
