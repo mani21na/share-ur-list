@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
     def new
     end
- 
-
 
     def create
         @user = User.find_by(username: params[:username])
@@ -19,18 +17,16 @@ class SessionsController < ApplicationController
 
     #login with a 3rd party signup
     def omniauth
-        @user = User.find_or_create_by(uid: auth[:uid]) do |u|
+      @user = User.find_or_create_by(uid: auth[:uid]) do |u|
           u.username = auth[:info][:email]
           u.password = SecureRandom.hex
           u.first_name = auth[:info][:first_name]
           u.last_name = auth[:info][:last_name]
         end
-
-        if @user.valid?
+        if @user != nil
           session[:user_id] = @user.id
           redirect_to user_path(@user)
         else
-          binding.pry
           flash[:message] = @user.errors.full_messages
           redirect_to login_path
         end

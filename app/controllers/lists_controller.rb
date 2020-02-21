@@ -57,7 +57,7 @@ class ListsController < ApplicationController
   end
   
   def set_user_id
-    @user_id ||= current_user.id
+    @user_id = current_user.id
   end
 
   def list_params
@@ -65,6 +65,6 @@ class ListsController < ApplicationController
   end 
 
   def list_share_users
-    @share_users ||= @list.share_users
+    @share_users = @list.share_users
   end
 end

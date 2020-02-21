@@ -22,8 +22,6 @@ class ApplicationController < ActionController::Base
 
     #find a user created the list by List :id
     def list_creater(id)
-        @list_creater ||= User.find(List.find(id).user_id).username
-    end
-
-    
+        @list_creater = User.find(List.find(id).user_id).username
+    end 
 end

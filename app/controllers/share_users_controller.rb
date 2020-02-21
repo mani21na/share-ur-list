@@ -8,10 +8,13 @@ class ShareUsersController < ApplicationController
       redirect_to(list_user_search_path(params[:list_id]), alert: "Empty field!") and return 
       #redirect_to(root_path, alert: "Empty field!") and return  
     end   
-      @share_user = @list.share_users.build  
-      @user = User.search_users_by_username(params[:search]).first
-        
-      @share_user.user_id = @user.id
+    @user = User.search_users_by_username(params[:search]).first
+      if @user == nil
+        redirect_to(list_user_search_path(params[:list_id]), alert: "No search results") and return
+      else
+        @share_user = @list.share_users.build  
+        @share_user.user_id = @user.id
+      end
   end
 
   def search 
@@ -42,10 +45,10 @@ class ShareUsersController < ApplicationController
   end
 
   def set_share_users
-    @share_user ||= ShareUser.find(params[:id])
+    @share_user = ShareUser.find(params[:id])
   end
 
   def current_list
-    @list ||= List.find(params[:list_id].to_i)
+    @list = List.find(params[:list_id].to_i)
   end
 end
