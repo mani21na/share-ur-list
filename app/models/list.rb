@@ -10,4 +10,8 @@ class List < ApplicationRecord
 
     validates :subject, presence: true
     validates_uniqueness_of :subject, scope: :user_id
+
+    def self.search_lists_by_item(search)
+        self.joins(:items).where("item like ?", "#{search.downcase}")
+    end
 end

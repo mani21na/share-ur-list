@@ -40,8 +40,8 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list.share_users.destroy
-    @list.items.destroy
+    #@list.share_users.destroy
+    #@list.items.destroy
     @list.destroy
     redirect_to user_path(current_user.id)
   end

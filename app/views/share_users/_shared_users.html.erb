@@ -1,7 +1,7 @@
 <% if !@share_users.empty? %>
     <label>Share users: </label><br>
     <% @share_users.each do |share_user| %>
-        <%= share_user.username %>
+        <%= share_user.username %> / note: <%= share_user.note %>
         
         <%= form_for share_user, url: list_share_user_path(@list.id, share_user.id), method: :DELETE do |f|%>
             <%= f.submit "Delete this user from the list"%>
