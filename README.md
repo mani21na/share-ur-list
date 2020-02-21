@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is a handy tool to share your lists with others.
 
-Things you may want to cover:
+1. Login / Logout function.
+2. Sign-up login function using Google account.
+3. Create, update, delete lists and share with other users.
+4. Another user search function using the search box.
+
 
 * Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ruby '2.7.0'
